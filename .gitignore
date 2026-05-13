@@ -1,0 +1,169 @@
+# Dependencies
+# -----------------------------
+node_modules/
+.pnp
+.pnp.js
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# -----------------------------
+# Runtime data
+# -----------------------------
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# -----------------------------
+# Coverage directory
+# -----------------------------
+coverage/
+*.lcov
+
+# -----------------------------
+# Build folders
+# -----------------------------
+dist/
+build/
+out/
+.next/
+.vercel/
+.cache/
+.tmp/
+.temp/
+
+# -----------------------------
+# React / Vite
+# -----------------------------
+vite.svg
+*.tsbuildinfo
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Keep example env files
+!.env.example
+
+# -----------------------------
+# OS generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# IDE / Editor files
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# -----------------------------
+# Mac system files
+# -----------------------------
+.AppleDouble
+.LSOverride
+
+# -----------------------------
+# Linux system files
+# -----------------------------
+*~
+
+# -----------------------------
+# Windows system files
+# -----------------------------
+Desktop.ini
+
+# -----------------------------
+# Package manager lock files
+# (Choose based on your package manager)
+# -----------------------------
+
+# Uncomment if needed
+
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# -----------------------------
+# Node.js cache
+# -----------------------------
+.npm
+.eslintcache
+.stylelintcache
+
+# -----------------------------
+# Testing
+# -----------------------------
+jest-cache/
+playwright-report/
+test-results/
+
+# -----------------------------
+# Database files
+# -----------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# -----------------------------
+# Uploads / user-generated files
+# -----------------------------
+uploads/
+public/uploads/
+
+# -----------------------------
+# Firebase
+# -----------------------------
+.firebase/
+
+# -----------------------------
+# Docker
+# -----------------------------
+docker-compose.override.yml
+
+# -----------------------------
+# Misc
+# -----------------------------
+*.tgz
+*.bak
+*.orig
+
+# -----------------------------
+# Optional: Ignore backend/frontend builds separately
+# -----------------------------
+
+# Backend
+server/build/
+server/dist/
+
+# Frontend
+client/build/
+client/dist/
+
+# -----------------------------
+# Optional: TypeScript
+# -----------------------------
+*.tsbuildinfo
+
+# -----------------------------
+# Optional: TurboRepo / Monorepo
+# -----------------------------
+.turbo/
