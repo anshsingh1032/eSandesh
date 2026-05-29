@@ -38,4 +38,45 @@ const signup = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(200, createdUser, "user registered successfully"));
 });
-export { signup };
+
+const login = asyncHandler(async(req,res)=>{
+    const{email,password}= req.body
+    if(!email || !password){
+        throw new ApiError(400,"password and email is required")
+    }
+    const user = await User.findOne({email})
+    if(!user){
+        throw new ApiError(404,"user does not exists")
+    }
+    const isPasswordValid = await user.isPasswordCorrect(password)
+    if(!isPasswordValid){
+        throw new ApiError(401,"Invalid user credentials")
+    }
+    generateTokenAndSetCookie(res,user._id)
+    await user.save();
+
+    const loggedInUser = await User.findById(user._id).select("-password")
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(
+            200,
+            {
+                user:loggedInUser
+            },
+            "User logged in successfully"
+        )
+    )
+})
+const logout = asyncHandler(async(req,res)=>{
+    return res
+    .status(200)
+    .clearCookie("token")
+    .json(new ApiResponse(200 , {} , "User logged Out"))
+})
+
+export {
+    signup,
+    login,
+    logout
+ };
