@@ -5,6 +5,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
 import { sendWelcomeEmail } from "../emails/emailHandlers.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 dotenv.config()
 
@@ -75,8 +76,29 @@ const logout = asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200 , {} , "User logged Out"))
 })
 
+const updateProfile = asyncHandler(async(req,res)=>{
+    const profilePicLocalPath = req.files?.profilePic[0]?.path
+
+    if(!profilePicLocalPath){
+        throw new ApiError(400,"Profile picture is required")
+    }
+
+    const profilePic = await uploadOnCloudinary(profilePicLocalPath)
+    if (!profilePic) {
+        throw new ApiError(400,"Profile picture is required 2")
+    }
+    const updatedUser = await User.findByIdAndUpdate(req.user._id,
+        {profilePic:profilePic.url},
+        {new:true}
+    )
+    return res.status(200).json(
+        new ApiResponse(200,{updatedUser},"profile updated successfully")
+    )
+})
+
 export {
     signup,
     login,
-    logout
+    logout,
+    updateProfile
  };
