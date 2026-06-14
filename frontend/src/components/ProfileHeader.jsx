@@ -12,26 +12,25 @@ function ProfileHeader() {
 
   const fileInputRef = useRef(null);
 
-  const handleImageUpload = (e) => {
+
+const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
+    // preview only
     const reader = new FileReader();
+    reader.onloadend = () => setSelectedImg(reader.result);
     reader.readAsDataURL(file);
 
-    reader.onloadend = async () => {
-      const base64Image = reader.result;
-      setSelectedImg(base64Image);
-      await updateProfile({ profilePic: base64Image });
-    };
-  };
+    await updateProfile(file);
+};
 
   return (
     <div className="p-6 border-b border-slate-700/50">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* AVATAR */}
-          <div className="avatar online">
+          <div className="avatar avatar-online">
             <button
               className="size-14 rounded-full overflow-hidden relative group"
               onClick={() => fileInputRef.current.click()}
