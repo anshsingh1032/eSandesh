@@ -18,7 +18,15 @@ app.use(cors({origin:process.env.CLIENT_URL, credentials:true}))
 app.use(cookieParser())
 app.use("/api/auth",authRoutes)
 app.use("/api/messages",messageRoutes)
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
 
+  return res.status(statusCode).json({
+    success: false,
+    message,
+  });
+});
 connectDB()
 .then(()=>{
     app.listen(PORT || 8000 ,()=>{
