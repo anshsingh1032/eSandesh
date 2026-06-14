@@ -9,7 +9,7 @@ const router = express.Router()
 router.use(arcjetProtection,protectRoute)
 
 router.route("/contacts").get(getAllContacts)
-router.route("/chat").get(getChatPartners)
+router.route("/chats").get(getChatPartners)
 router.route("/:id").get(getMessagesByUserId)
 router.route("/send/:id").post(upload.single("image"),sendMessage)
 
