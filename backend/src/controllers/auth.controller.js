@@ -90,7 +90,7 @@ const updateProfile = asyncHandler(async(req,res)=>{
     const updatedUser = await User.findByIdAndUpdate(req.user._id,
         {profilePic:profilePic.url},
         {new:true}
-    )
+    ).select("-password")
     return res.status(200).json(
         new ApiResponse(200,{updatedUser},"profile updated successfully")
     )
