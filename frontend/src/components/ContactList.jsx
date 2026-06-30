@@ -21,7 +21,7 @@ function ContactList() {
         >
           <div className="flex items-center gap-3">
             {/* TODO: MAKE IT WORK WITH SOCKET */}
-            <div className={`avatar online`}>
+            <div className={`avatar avatar-online`}>
               <div className="size-12 rounded-full">
                 <img src={contact.profilePic || "/avatar.png"} />
               </div>
